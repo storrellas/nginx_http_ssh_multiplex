@@ -1,0 +1,170 @@
+# Default server
+server {
+  listen 801 default_server;
+  listen [::]:801;
+
+  client_max_body_size 100M;
+
+  return 301 https://$host$request_uri:4431;
+  #location / {
+  #    proxy_pass http://localhost:9090/;
+  #}
+}
+
+server {
+  listen 4431 ssl default_server;
+
+  client_max_body_size 100M;
+
+  ssl on;
+  ssl_certificate /home/storrellas/certs/selfsigned_storrellas.mooo.com.cert;
+  ssl_certificate_key /home/storrellas/certs/selfsigned_storrellas.mooo.com.key;
+
+  #root /home/storrellas/workspace/popup-e-market;
+  #root /home/storrellas/workspace/front-shape-mobile;
+  root /home/storrellas/workspace/sample;
+  #location / {
+  #   proxy_pass http://localhost:7070/;
+  #   include proxy_params;
+  #}
+  #location / {
+  #  root /home/storrellas/workspace/security/spa;
+  #  #index  index.html index.htm;
+  #  try_files $uri $uri/ /coprar/index.html;
+  #}
+
+}
+
+
+
+# Civitas
+#server {
+#  listen 8080;
+#  listen [::]:8080;
+#
+#  server_name civitas.mooo.com;
+#
+#  location / {
+#      proxy_pass http://localhost:9090/;
+#  }
+#}
+
+server {
+  listen 801;
+  listen [::]:801;
+  server_name civitas.mooo.com;
+  return 301 https://$host$request_uri:4431;
+  #location / {
+  #    proxy_pass http://localhost:9090/;
+  #}
+}
+
+server {
+  listen 4431 ssl;
+
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/civitas.mooo.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/civitas.mooo.com/privkey.pem;
+
+  server_name civitas.mooo.com;
+  #root /home/storrellas/workspace/popup-e-market;
+  #root /home/storrellas/workspace/meatze;
+  #location /db/ {
+  #    proxy_pass http://localhost:9091/;
+  #    include proxy_params;
+  #}
+
+  #location / {
+  #    proxy_pass http://localhost:9090/;
+  #    include proxy_params;
+  #}
+
+  #root /home/storrellas/workspace/hf-frontend/build;
+  root /home/storrellas/workspace/sample;
+
+#  location / {
+#     proxy_pass http://localhost:3000/;
+#     include proxy_params; 
+#     proxy_set_header X-Forwarded-Proto $scheme;
+#  }
+
+}
+
+# electus
+server {
+  listen 801;
+  listen [::]:801;
+  server_name electus.mooo.com;
+  return 301 https://$host$request_uri:4431;
+}
+
+server {
+  listen 4431 ssl;
+
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/electus.mooo.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/electus.mooo.com/privkey.pem;
+
+  server_name electus.mooo.com;
+
+  client_max_body_size 100M;
+
+
+  #root /home/storrellas/workspace/dhtmlx_test;
+  location / {
+    #root /home/storrellas/workspace/security/spa;
+    root /home/storrellas/workspace/eco_events_ui;
+    #index  index.html index.htm;
+    try_files $uri $uri/ /index.html;
+  }
+  #location / {
+  #    proxy_pass http://localhost:7071/;
+  #    include proxy_params;
+  #}
+}
+
+#server {
+#  listen 8080;
+#  listen [::]:8080;
+#
+#  server_name electus.mooo.com;
+#
+#  location / {
+#      proxy_pass http://localhost:4041/;
+#  }
+#}
+#
+# facultas
+server {
+  listen 801;
+  listen [::]:801;
+  server_name facultas.mooo.com;
+  return 301 https://$host$request_uri:4431;
+}
+
+server {
+  listen 4431 ssl;
+
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/facultas.mooo.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/facultas.mooo.com/privkey.pem;
+
+  server_name facultas.mooo.com;
+
+  location / {
+      proxy_pass https://localhost:4200/;
+  }
+}
+
+
+#
+#server {
+#  listen 8080;
+#  listen [::]:8080;
+#
+#  server_name facultas.mooo.com;
+#
+#  location / {
+#      proxy_pass http://localhost:9092/;
+#  }
+#}
